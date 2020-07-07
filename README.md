@@ -4,7 +4,7 @@
 > ## Description
 > - Rosnode that find feasible astar path from current position to target position using [SBPL](http://www.ros.org/wiki/sbpl) Library . Target position is published into topic /clicked_point from rviz and the path produced is also visualized in rviz .
 
-> ## Visual
+> ## Visuals
 ![](images/path.png)
 ![](images/udacity.gif)
 
