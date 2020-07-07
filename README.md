@@ -8,7 +8,7 @@
 ![](images/udacity.gif)
 
 > ## Setup
-> - ####To run this project
+> - #### To run this project
 
 
 ```shell
