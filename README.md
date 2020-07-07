@@ -1,13 +1,13 @@
-#Grid Based Astar Planner for Mobile Robots 
+# Grid Based Astar Planner for Mobile Robots 
 
 
->##Description
+> ## Description
 > - Rosnode that find feasible astar path from current position to target position using [SBPL](http://www.ros.org/wiki/sbpl) Library . Target position is published into topic /clicked_point from rviz and the path produced is also visualized in rviz .
 
->##Visual
+> ## Visual
 ![](images/udacity_capstone.gif)
 
->##Setup
+> ## Setup
 > - ####To run this project
 
 
@@ -21,7 +21,7 @@
         $rosrun planner rosnode_test
 ```
 
->##OverView
+> ## OverView
 > - There are three main classes in this project . SBPLinterface which is an interface class that extends thr SBPL library . ROSNode class which creates all ROS related work like subscribing into a topic or publishing into a topic . Planner Class which creates  object of the SBPLinterface Class and ROSNode class. The main node creates an object of Planner Class . First Planner Class takes all information of the enviroment from ROSNode Class which subscribe to topic `/move_base/global_costmap/costmap` and then Planner Class initialises the enviroment using the SBPLinterface object by calling `setEnvironmentValue()` member function of SBPLinterface Class. The ROSNode Class is also subscribed to  topic `/amcl_poses` , which updates the member variables `currentX_` , `currentY_` and `currentTheta_` which indicates the current position of the Robot . ROSNode class is also subscribed to `/clicked_point` . Whenever a point is published into the topic `/clicked_point` , member variables `targetX_` , `targetY_` and `targetTheta_` gets updated and a boolean variable indicating a new target position becomes true . The Planner Class will plan whenever a new target position is available by always monitoring that boolean member variable of the ROSNode Class . Planner Class will now call member function `planxythetalat()` of SBPLinterface Class with help SBPLinterface Class object and will publish the path into the topic `/astar` with help of ROSNode Class object . This path can be visualized in rviz by subscribing into topic `/astar`.
 
 > ## Rubric Points
