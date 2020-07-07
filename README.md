@@ -6,6 +6,7 @@
 
 > ## Visual
 ![](images/udacity.gif)
+![](images/path.png)
 
 > ## Setup
 > - #### To run this project
