@@ -1,4 +1,4 @@
-# robo
+# Table Docking with Node Diagnostics
 1) The first stage begins with an omni-directional robot parked in front of a table. The four legs of the table are visible to the Lidar sensor at the centre of the robot.
 2) In the second stage, the robot will then find its way to go underneath the table, and it will align and center itself within 4 legs of the table as shown in the picture attached. Additionally the robot will response to the movement of the table accordingly.
 
@@ -25,11 +25,11 @@ $ roslaunch robo robo.launch <br />
 
 3) Now you will see robot getting inside the robot. Please change the table position, the robot will respond accordingly. 
 
-# Diagnostics Monitoring
+## Diagnostics Monitoring
 
 A monitoring system for tracking the node alive status and report error under /monitoring topic. 
 
-## Node monitor
+### Node monitor
 
 A Node monitor that pings every node from the list of monitoring nodes (from the parameter file). 
 
