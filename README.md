@@ -5,7 +5,7 @@
 > - Rosnode that find feasible astar path from current position to target position using [SBPL](http://www.ros.org/wiki/sbpl) Library . Target position is published into topic /clicked_point from rviz and the path produced is also visualized in rviz .
 
 > ## Visual
-![](images/udacity_capstone.gif)
+![](images/udacity.gif)
 
 > ## Setup
 > - ####To run this project
@@ -30,7 +30,7 @@
 > - In ROS_node.h ,SBPLinterface.h and Planner.h ,class member has been defined in appropriate access specifier.
 > - In ROS_node.cpp ROSNode constructor line no. 3 member variable `ros::NodeHandle nh_` is initialized using initialization lists. 
 > - All information related to ROS is in class ROSNode. And all thing related for SBPL library is in SBPLinterface class . Hence encalsulation.
-> - In SBPLinterface.cpp member function planxythetalat() line no 25  use pass by reference also member function setEnvironmentValue() line no 166 uses pass by reference.
+> - In SBPLinterface.cpp member function `planxythetalat()` line no 25  use pass by reference also member function `setEnvironmentValue()` line no 166 uses pass by reference.
 > - In SBPLinterface.cpp , destructor ~SBPL() line no. 17 dynamic allocated memory is deallocated.
 > - In SBPLinterface.cpp ,  line no 54  uses unique_ptr to create instance of SBPLPlanner . Also in planner.h line no. 8 and 9 declares two shared_ptr for classes SBPLinterface and ROSNode . It is defined in line no 5 snd 7 in planner.cpp .
 > - In test_ros_node.cpp line no 12 a thread is created .
