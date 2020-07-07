@@ -1,41 +1,54 @@
-# Grid Based Astar Planner for Mobile Robots 
+# robo
+1) The first stage begins with an omni-directional robot parked in front of a table. The four legs of the table are visible to the Lidar sensor at the centre of the robot.
+2) In the second stage, the robot will then find its way to go underneath the table, and it will align and center itself within 4 legs of the table as shown in the picture attached. Additionally the robot will response to the movement of the table accordingly.
+
+### Prerequisites
+
+1) Install ROS Kinetic with ubuntu 16.04.
+
+### Instructions
+
+1) create a workspace <br />
+$ mkdir -p ~/catkin_ws/src <br />
+$ cd ~/catkin_ws/src <br />
+$ catkin_init_workspace <br />
+$ cd .. <br />
+$ catkin_make <br />
+   
+2) Clone the project and launch <br />
+$ cd ~/catkin_ws/src <br />
+$ git clone https://github.com/rvipin17/robo.git <br />
+$ cd .. <br />
+$ catkin_make <br />
+$ source ~/catkin_ws/devel/setup.bash <br />
+$ roslaunch robo robo.launch <br />
+
+3) Now you will see robot getting inside the robot. Please change the table position, the robot will respond accordingly. 
+
+# Diagnostics Monitoring
+
+A monitoring system for tracking the node alive status and report error under /monitoring topic. 
+
+## Node monitor
+
+A Node monitor that pings every node from the list of monitoring nodes (from the parameter file). 
+
+**Monitored Values:**
+
+|     values      | unit  |          Comment                   |
+|-----------------|-------|------------------------------------|
+|     isAvailable    |       |         True, if the node is registered to the master                          |
+
+**Warning/Errors:**
+
+* Error if, 
+     * Node is not available
+
+**Parameters:**
 
 
-> ## Description
-> - Rosnode that find feasible astar path from current position to target position using [SBPL](http://www.ros.org/wiki/sbpl) Library . Target position is published into topic /clicked_point from rviz and the path produced is also visualized in rviz .
-
-> ## Visuals
-![](images/path.png)
-![](images/udacity.gif)
-
-
-> ## Setup
-> - #### To run this project
-
-```shell
-        echo "export TURTLEBOT3_MODEL="burger" >> ~/.bashrc
-        source ~/.bashrc
-```
-```shell
-        $roslaunch turtlebot3_gazebo turtlebot3_world.launch 
-```
-```shell
-        $roslaunch turtlebot3_navigation turtlebot3_navigation.launch
-```
-```shell
-        $rosrun planner rosnode_test
-```
-
-> ## OverView
-> - There are three main classes in this project . SBPLinterface which is an interface class that extends thr SBPL library . ROSNode class which creates all ROS related work like subscribing into a topic or publishing into a topic . Planner Class which creates  object of the SBPLinterface Class and ROSNode class. The main node creates an object of Planner Class . First Planner Class takes all information of the enviroment from ROSNode Class which subscribe to topic `/move_base/global_costmap/costmap` and then Planner Class initialises the enviroment using the SBPLinterface object by calling `setEnvironmentValue()` member function of SBPLinterface Class. The ROSNode Class is also subscribed to  topic `/amcl_poses` , which updates the member variables `currentX_` , `currentY_` and `currentTheta_` which indicates the current position of the Robot . ROSNode class is also subscribed to `/clicked_point` . Whenever a point is published into the topic `/clicked_point` , member variables `targetX_` , `targetY_` and `targetTheta_` gets updated and a boolean variable indicating a new target position becomes true . The Planner Class will plan whenever a new target position is available by always monitoring that boolean member variable of the ROSNode Class . Planner Class will now call member function `planxythetalat()` of SBPLinterface Class with help SBPLinterface Class object and will publish the path into the topic `/astar` with help of ROSNode Class object . This path can be visualized in rviz by subscribing into topic `/astar`.
-
-> ## Rubric Points
->
-> - The project uses Object Oriented Programming techniques. The classes SBPL , ROSNode and Planner are declared in SBPLinterface.h , ROS_node.h and planner.h respectively and defined in SBPLinterface.cpp, ROS_node.cpp and planner.cpp respectively.
-> - In ROS_node.h ,SBPLinterface.h and Planner.h ,class member has been defined in appropriate access specifier.
-> - In ROS_node.cpp ROSNode constructor line no. 3 member variable `ros::NodeHandle nh_` is initialized using initialization lists. 
-> - All information related to ROS is in class ROSNode. And all thing related for SBPL library is in SBPLinterface class . Hence encalsulation.
-> - In SBPLinterface.cpp member function `planxythetalat()` line no 25  use pass by reference also member function `setEnvironmentValue()` line no 166 uses pass by reference.
-> - In SBPLinterface.cpp , destructor ~SBPL() line no. 17 dynamic allocated memory is deallocated.
-> - In SBPLinterface.cpp ,  line no 54  uses unique_ptr to create instance of SBPLPlanner . Also in planner.h line no. 8 and 9 declares two shared_ptr for classes SBPLinterface and ROSNode . It is defined in line no 5 snd 7 in planner.cpp .
-> - In test_ros_node.cpp line no 12 a thread is created .
+	frequency: 1					# Frequency at which diagnostics updates node errors
+	filter_type: 1                                  # 0 (default: monitors all nodes registered to ros) or 
+                                                      1 (only monitor nodes provided in the nodes param) or
+                                                      2 (monitor all registered nodes except for the nodes in the param)
+    nodes: [node_name]                              # List of nodes to be monitored or blacklisted based on filter type
