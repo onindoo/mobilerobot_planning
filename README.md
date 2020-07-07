@@ -10,7 +10,10 @@
 > ## Setup
 > - #### To run this project
 
-
+```shell
+        echo "export TURTLEBOT3_MODEL="burger" >> ~/.bashrc
+        source ~/.bashrc
+```
 ```shell
         $roslaunch turtlebot3_gazebo turtlebot3_world.launch 
 ```
