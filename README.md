@@ -2,7 +2,7 @@
 This is the traffic managment program where we can facilitate the traffic flow by specifiying if its rush hour on a praticular intersection of the road. It is observed that during particular hours traffic flow is in certain directions for example from residential areas to industrial zones in the morning and in opposite direction in the evenings, called rush hours. The duration of traffic lights is such that the traffic flow is smooth from where the heavy traffic is coming to where it is going. This can be done by increasing the traffic light duration in the direction of traffic flow.
 The program takes the data from the user about the rush hour info about the intersection and where rush hour is there the traffic light swtiches between 12 to 15 secs and where there is no rush hour the traffic light swtiches between 3 to 5 sec.
 
-<img src="data/project.gif"/>
+<img src="../project.gif"/>
 
 
 ## Dependencies for Running Locally
